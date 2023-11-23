@@ -1,16 +1,20 @@
 function saveData() {
     const noValue = document.getElementById('noInput').value;
+    const modelValue = document.getElementById('modelInput').value;
+    const sizeValue = document.getElementById('sizeInput').value;
     const capacityValue = document.getElementById('capacityInput').value;
 
     // Validate input (you can add more sophisticated validation)
-    if (!noValue || !capacityValue) {
-        alert('Please fill in both fields.');
+    if (!noValue || !modelValue || !sizeValue || !capacityValue) {
+        alert('Please fill in all fields.');
         return;
     }
 
     // Create a data object
     const data = {
-        no: parseInt(noValue),
+        id: noValue,
+        registrationNo: modelValue,
+        type: sizeValue,
         capacity: parseInt(capacityValue),
     };
 
@@ -37,7 +41,7 @@ function sendDataToBackend(data) {
     })
     .then(responseData => {
         alert('Data saved successfully!');
-        // You can perform additional actions after successful save
+        console.log(responseData)
     })
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
